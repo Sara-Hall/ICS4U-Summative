@@ -138,7 +138,29 @@ public class Agenda extends javax.swing.JFrame {
     
     // update item button
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // add code here
+        DefaultTableModel table = (DefaultTableModel)agendaTable.getModel();
+        int selectedItem = agendaTable.getSelectedRow();
+        
+        // replace data in selected table row if any changes are made
+        try {
+            String agendaCourse = table.getValueAt(selectedItem, 0).toString();
+            String agendaType = table.getValueAt(selectedItem, 1).toString();
+            String agendaDate = table.getValueAt(selectedItem, 2).toString();
+            String agendaGrade = table.getValueAt(selectedItem, 3).toString();
+
+            String newAgendaCourse = JOptionPane.showInputDialog(null, "Enter any changes to the course", agendaCourse);
+            String newAgendaType = JOptionPane.showInputDialog(null, "Enter any changes to the type of work due", agendaType);
+            String newAgendaDate = JOptionPane.showInputDialog(null, "Enter any changes to the due date", agendaDate);
+            String newAgendaGrade = JOptionPane.showInputDialog(null, "Enter any changes to the grade", agendaGrade);
+
+            table.setValueAt(newAgendaCourse, selectedItem, 0);
+            table.setValueAt(newAgendaType, selectedItem, 1);
+            table.setValueAt(newAgendaDate, selectedItem, 2);
+            table.setValueAt(newAgendaGrade, selectedItem, 3);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No row selected");
+        }
     }                                      
 
     // delete item button
