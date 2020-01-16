@@ -10,6 +10,10 @@ import java.io.File;
 import java.io.FileWriter;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +26,7 @@ public class Agenda extends javax.swing.JFrame {
      */
     public Agenda() {
         initComponents();
+        setTitle("Agenda");
         getContentPane().setBackground(new java.awt.Color(72,209,204));
     }
 
@@ -105,13 +110,13 @@ public class Agenda extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(updateItem, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(deleteItem, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addItem, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(importTable, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(exportTable, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mainMenu, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(mainMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(importTable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(exportTable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addItem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(updateItem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deleteItem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(253, 253, 253)
                         .addComponent(Title)))
@@ -161,7 +166,6 @@ public class Agenda extends javax.swing.JFrame {
         
         DefaultTableModel table = (DefaultTableModel)agendaTable.getModel();
         table.addRow(agendaItem);
-        
     }                                       
     
     // update item button
@@ -169,15 +173,32 @@ public class Agenda extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel)agendaTable.getModel();
         int selectedRow = agendaTable.getSelectedRow();
         int selectedCol = agendaTable.getSelectedColumn();
+        String message = null;
         
         // replace data in selected table cell if any changes are made
         try {
             String agendaItem = table.getValueAt(selectedRow, selectedCol).toString();
-            String newAgendaCourse = JOptionPane.showInputDialog(null, "Enter any changes", agendaItem);
+            switch (selectedCol) {
+                case 0:
+                    message = "Enter any changes to the course";
+                    break;
+                case 1:
+                    message = "Enter any changes to the type of assessment due";
+                    break;
+                case 2:
+                    message = "Enter any changes to the date";
+                    break;
+                case 3:
+                    message = "Enter any changes to the grade";
+                default:
+                    break;
+            }
+                    
+            String newAgendaCourse = JOptionPane.showInputDialog(null, message, agendaItem);
             table.setValueAt(newAgendaCourse, selectedRow, selectedCol);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No row selected");
+            JOptionPane.showMessageDialog(null, "No cell selected");
         }
     }                                          
 
@@ -199,7 +220,7 @@ public class Agenda extends javax.swing.JFrame {
         // create new text file if not already created
         // save contents of table to text file
         try {
-            File file = new File("C:\\Users\\sara\\OneDrive\\Documents\\text.txt");
+            File file = new File("C:\\Users\\sara\\OneDrive\\Documents\\Agenda.txt");
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -223,7 +244,24 @@ public class Agenda extends javax.swing.JFrame {
 
     // import table button
     private void importTableActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // add code here
+        String fileLocation = "C:\\Users\\sara\\OneDrive\\Documents\\Agenda.txt";
+        File file = new File(fileLocation);
+        
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            DefaultTableModel table = (DefaultTableModel)agendaTable.getModel();          
+            Object[] agendaLines = br.lines().toArray();
+            table.setRowCount(0);
+            
+            for(int i = 0; i < agendaLines.length; i++) {
+                String agendaLine = agendaLines[i].toString().trim();
+                String[] agendaItem = agendaLine.split(",");
+                table.addRow(agendaItem);
+            }
+            br.close();
+        } catch (Exception ex) {
+            Logger.getLogger(Agenda.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }                                           
 
     /**
