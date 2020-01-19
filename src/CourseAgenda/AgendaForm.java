@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * ICS4U Summative
+ * Course Planner
+ * Agenda
  */
 package CourseAgenda;
 
@@ -27,19 +27,144 @@ public class AgendaForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        AgendaTitle = new javax.swing.JLabel();
+        ScrollPane = new javax.swing.JScrollPane();
+        AgendaTable = new javax.swing.JTable();
+        ImportTable = new javax.swing.JButton();
+        ExportTable = new javax.swing.JButton();
+        AddItem = new javax.swing.JButton();
+        UpdateItem = new javax.swing.JButton();
+        DeleteItem = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(0, 153, 255));
+
+        AgendaTitle.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        AgendaTitle.setText("Agenda");
+
+        AgendaTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Course", "Type", "Date", "Grade"
+            }
+        ));
+        ScrollPane.setViewportView(AgendaTable);
+
+        ImportTable.setText("Import Table");
+        ImportTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImportTableActionPerformed(evt);
+            }
+        });
+
+        ExportTable.setText("Export Table");
+        ExportTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportTableActionPerformed(evt);
+            }
+        });
+
+        AddItem.setText("Add Item");
+        AddItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddItemActionPerformed(evt);
+            }
+        });
+
+        UpdateItem.setText("Update Item");
+        UpdateItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateItemActionPerformed(evt);
+            }
+        });
+
+        DeleteItem.setText("Delete Item");
+        DeleteItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteItemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(267, 267, 267)
+                        .addComponent(AgendaTitle))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ImportTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ExportTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(UpdateItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(DeleteItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AgendaTitle)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(ImportTable)
+                        .addGap(18, 18, 18)
+                        .addComponent(ExportTable)
+                        .addGap(87, 87, 87)
+                        .addComponent(AddItem)
+                        .addGap(18, 18, 18)
+                        .addComponent(UpdateItem)
+                        .addGap(18, 18, 18)
+                        .addComponent(DeleteItem))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ImportTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportTableActionPerformed
+        Agenda agenda = new Agenda();
+        agenda.AgendaImport();
+    }//GEN-LAST:event_ImportTableActionPerformed
+
+    private void ExportTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportTableActionPerformed
+        Agenda agenda = new Agenda();
+        agenda.AgendaExport();
+    }//GEN-LAST:event_ExportTableActionPerformed
+
+    private void AddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddItemActionPerformed
+        Agenda agenda = new Agenda();
+        agenda.AgendaAdd();
+    }//GEN-LAST:event_AddItemActionPerformed
+
+    private void UpdateItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateItemActionPerformed
+        Agenda agenda = new Agenda();
+        agenda.AgendaUpdate();
+    }//GEN-LAST:event_UpdateItemActionPerformed
+
+    private void DeleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteItemActionPerformed
+        Agenda agenda = new Agenda();
+        agenda.AgendaDelete();
+    }//GEN-LAST:event_DeleteItemActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddItem;
+    public javax.swing.JTable AgendaTable;
+    private javax.swing.JLabel AgendaTitle;
+    private javax.swing.JButton DeleteItem;
+    private javax.swing.JButton ExportTable;
+    private javax.swing.JButton ImportTable;
+    private javax.swing.JScrollPane ScrollPane;
+    private javax.swing.JButton UpdateItem;
     // End of variables declaration//GEN-END:variables
 }
