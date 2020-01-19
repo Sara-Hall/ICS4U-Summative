@@ -5,6 +5,9 @@
  */
 package CourseAgenda;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sara
@@ -14,8 +17,9 @@ public class AgendaForm extends javax.swing.JPanel {
     /**
      * Creates new form AgendaForm
      */
-    public AgendaForm() {
+    public AgendaForm(Agenda Agenda) {
         initComponents();
+        myAgenda = Agenda;
     }
 
     /**
@@ -142,18 +146,112 @@ public class AgendaForm extends javax.swing.JPanel {
     }//GEN-LAST:event_ExportTableActionPerformed
 
     private void AddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddItemActionPerformed
-        Agenda agenda = new Agenda();
-        agenda.AgendaAdd();
+        String agendaCourse = JOptionPane.showInputDialog("Enter the course");
+        String agendaType = JOptionPane.showInputDialog("Enter the type of assessment due");
+        String agendaDate = JOptionPane.showInputDialog("Enter the due date");
+        String agendaGrade = JOptionPane.showInputDialog("Enter the grade if recieved");
+
+        myAgenda.AgendaAdd(agendaCourse, agendaType, agendaDate, agendaGrade);
+        
+        DisplayAgenda();
+        
+        //AgendaTable = agenda.AgendaAdd();
+       //(DefaultTableModel)AgendaTable.getModel() = agenda.AgendaAdd();
+        
     }//GEN-LAST:event_AddItemActionPerformed
 
+    private void DisplayAgenda() {
+        AgendaItem myAgendaItem;
+        
+        DefaultTableModel table = (DefaultTableModel)AgendaTable.getModel();
+        table.setRowCount(0);
+
+        for (int i = 0; i < myAgenda.AgendaItems(); i++) {
+            myAgendaItem = myAgenda.AgendaGet(i);
+            
+             Object agendaItem[] = new Object[4];
+            agendaItem[0] = myAgendaItem.AgendaCourse;
+            agendaItem[1] = myAgendaItem.AgendaType;
+            agendaItem[2] = myAgendaItem.AgendaDate;
+            agendaItem[3] = myAgendaItem.AgendaGrade;
+        
+            table.addRow(agendaItem);
+        }
+    }
+    
     private void UpdateItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateItemActionPerformed
-        Agenda agenda = new Agenda();
-        agenda.AgendaUpdate();
+        
+        DefaultTableModel table = (DefaultTableModel)AgendaTable.getModel();
+        int selectedRow = AgendaTable.getSelectedRow();
+        int selectedCol = AgendaTable.getSelectedColumn();
+        String message = null;
+        
+        // replace data in selected table cell if any changes are made
+        try {
+            AgendaItem AgendaItem = new AgendaItem();
+            AgendaItem.AgendaCourse = table.getValueAt(selectedRow, 0).toString();
+            AgendaItem.AgendaType = table.getValueAt(selectedRow, 1).toString();
+            AgendaItem.AgendaDate = table.getValueAt(selectedRow, 2).toString();
+            AgendaItem.AgendaGrade = table.getValueAt(selectedRow, 3).toString();
+            
+            String agendaItem = table.getValueAt(selectedRow, selectedCol).toString();
+            switch (selectedCol) {
+                case 0:
+                    message = "Enter any changes to the course";
+                    break;
+                case 1:
+                    message = "Enter any changes to the type of assessment due";
+                    break;
+                case 2:
+                    message = "Enter any changes to the date";
+                    break;
+                case 3:
+                    message = "Enter any changes to the grade";
+                    break;
+                default:
+                    break;
+            }
+                    
+            agendaItem = JOptionPane.showInputDialog(null, message, agendaItem);
+
+            switch (selectedCol) {
+                case 0:
+                    AgendaItem.AgendaCourse = agendaItem;
+                    break;
+                case 1:
+                    AgendaItem.AgendaType = agendaItem;
+                    break;
+                case 2:
+                    AgendaItem.AgendaDate = agendaItem;
+                    break;
+                case 3:
+                    AgendaItem.AgendaGrade = agendaItem;
+                    break;
+                default:
+                    break;
+            }
+            table.setValueAt(agendaItem, selectedRow, selectedCol);
+            myAgenda.AgendaUpdate(selectedRow, AgendaItem.AgendaCourse, AgendaItem.AgendaType, AgendaItem.AgendaDate, AgendaItem.AgendaGrade);
+            DisplayAgenda();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No cell selected");
+        } 
+        
     }//GEN-LAST:event_UpdateItemActionPerformed
 
     private void DeleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteItemActionPerformed
-        Agenda agenda = new Agenda();
-        agenda.AgendaDelete();
+        DefaultTableModel table = (DefaultTableModel) AgendaTable.getModel();
+        
+        // delete selected row
+        try {
+            int selectedRowIndex = AgendaTable.getSelectedRow();
+            table.removeRow(selectedRowIndex);
+            myAgenda.AgendaDelete(selectedRowIndex);
+            DisplayAgenda();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No row selected");
+        }
     }//GEN-LAST:event_DeleteItemActionPerformed
 
 
@@ -167,4 +265,8 @@ public class AgendaForm extends javax.swing.JPanel {
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JButton UpdateItem;
     // End of variables declaration//GEN-END:variables
+
+    private Agenda myAgenda;
+    
+    
 }
