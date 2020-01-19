@@ -81,7 +81,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="Overview" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="Agenda" min="-2" max="-2" attributes="0"/>
+                          <Component id="ShowAgenda" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="Grades" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -104,7 +104,7 @@
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Overview" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Agenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ShowAgenda" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Grades" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -154,7 +154,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OverviewActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Agenda">
+        <Component class="javax.swing.JButton" name="ShowAgenda">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="66" red="0" type="rgb"/>
@@ -168,7 +168,7 @@
             <Property name="text" type="java.lang.String" value="Agenda"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AgendaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ShowAgendaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="MenuTitle">

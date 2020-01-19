@@ -17,8 +17,14 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
+    
+    private Agenda Agenda;
+    
+
+    
     public MainMenu() {
         initComponents();
+        Agenda = new Agenda();
     }
 
     /**
@@ -35,7 +41,7 @@ public class MainMenu extends javax.swing.JFrame {
         Label = new javax.swing.JLabel();
         Exit = new javax.swing.JButton();
         Overview = new javax.swing.JButton();
-        Agenda = new javax.swing.JButton();
+        ShowAgenda = new javax.swing.JButton();
         MenuTitle = new javax.swing.JLabel();
         Grades = new javax.swing.JButton();
         Settings = new javax.swing.JButton();
@@ -73,13 +79,13 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        Agenda.setBackground(new java.awt.Color(0, 102, 255));
-        Agenda.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        Agenda.setForeground(new java.awt.Color(255, 255, 255));
-        Agenda.setText("Agenda");
-        Agenda.addActionListener(new java.awt.event.ActionListener() {
+        ShowAgenda.setBackground(new java.awt.Color(0, 102, 255));
+        ShowAgenda.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        ShowAgenda.setForeground(new java.awt.Color(255, 255, 255));
+        ShowAgenda.setText("Agenda");
+        ShowAgenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AgendaActionPerformed(evt);
+                ShowAgendaActionPerformed(evt);
             }
         });
 
@@ -119,7 +125,7 @@ public class MainMenu extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Overview)
                         .addGap(42, 42, 42)
-                        .addComponent(Agenda)
+                        .addComponent(ShowAgenda)
                         .addGap(41, 41, 41)
                         .addComponent(Grades)
                         .addContainerGap())
@@ -137,7 +143,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Overview)
-                    .addComponent(Agenda)
+                    .addComponent(ShowAgenda)
                     .addComponent(Grades))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -179,16 +185,16 @@ public class MainMenu extends javax.swing.JFrame {
         jd.setVisible(true);
     }//GEN-LAST:event_OverviewActionPerformed
 
-    private void AgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgendaActionPerformed
+    private void ShowAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAgendaActionPerformed
         JDialog jd = new JDialog();
-        AgendaForm agendaUI = new AgendaForm();
+        AgendaForm agendaUI = new AgendaForm(Agenda);
         jd.setTitle("Agenda");
         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         jd.add(agendaUI);
         jd.pack();
         jd.setLocationRelativeTo(null);
         jd.setVisible(true);
-    }//GEN-LAST:event_AgendaActionPerformed
+    }//GEN-LAST:event_ShowAgendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,14 +232,15 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Agenda;
     private javax.swing.JButton Exit;
     private javax.swing.JButton Grades;
     private javax.swing.JLabel Label;
     private javax.swing.JLabel MenuTitle;
     private javax.swing.JButton Overview;
     private javax.swing.JButton Settings;
+    private javax.swing.JButton ShowAgenda;
     private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
 }
