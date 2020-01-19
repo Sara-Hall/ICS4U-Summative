@@ -101,9 +101,9 @@ public class Agenda {
     }
     
     public AgendaItem AgendaGet(int itemNumber) {
-        // make sure item number is an integer
-        if (itemNumber != (int)itemNumber) {
-            JOptionPane.showMessageDialog(null, "Not an integer");
+        // make sure item number does not exceed the number of AgendaItems
+        if (!(itemNumber < AgendaItems())) {
+            JOptionPane.showMessageDialog(null, "Item number exceeds the number of agenda items");
         }
         return AgendaItems.get(itemNumber);
     }

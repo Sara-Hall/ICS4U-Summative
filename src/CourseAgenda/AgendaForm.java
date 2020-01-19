@@ -156,23 +156,26 @@ public class AgendaForm extends javax.swing.JPanel {
     // when add item button is clicked
     private void AddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddItemActionPerformed
         // get user input
+        Boolean isValid;
         String agendaCourse = JOptionPane.showInputDialog("Enter the course");
         String agendaType = JOptionPane.showInputDialog("Enter the type of assessment due");
         String agendaDate = JOptionPane.showInputDialog("Enter the due date");
-        String agendaGrade = JOptionPane.showInputDialog("Enter the grade if received");
         
-        // make sure a number was entered for grade
-        try { 
-            Integer.parseInt(agendaGrade); 
-        } catch(NumberFormatException e) { 
-            JOptionPane.showMessageDialog(null, "Enter a number for grade");
-        } catch(NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Enter a number for grade");
-        }
-        
-        // show new row in table
-        myAgenda.AgendaAdd(agendaCourse, agendaType, agendaDate, Integer.parseInt(agendaGrade));
-        
+        do {
+            // make sure a number was entered for grade
+            isValid = false;
+            String agendaGrade = JOptionPane.showInputDialog("Enter the grade if received");
+            try { 
+                // show new row in table
+                myAgenda.AgendaAdd(agendaCourse, agendaType, agendaDate, Integer.parseInt(agendaGrade));
+                isValid = true;
+            } catch(NumberFormatException e) { 
+                JOptionPane.showMessageDialog(null, "Grade must be a number");
+            } catch(NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "Grade must be a number");
+            }
+        } while (isValid == false);
+               
         DisplayAgenda();
         
     }//GEN-LAST:event_AddItemActionPerformed
@@ -187,7 +190,7 @@ public class AgendaForm extends javax.swing.JPanel {
         for (int i = 0; i < myAgenda.AgendaItems(); i++) {
             myAgendaItem = myAgenda.AgendaGet(i);
             
-             Object agendaItem[] = new Object[4];
+            Object agendaItem[] = new Object[4];
             agendaItem[0] = myAgendaItem.AgendaCourse;
             agendaItem[1] = myAgendaItem.AgendaType;
             agendaItem[2] = myAgendaItem.AgendaDate;
@@ -204,6 +207,7 @@ public class AgendaForm extends javax.swing.JPanel {
         int selectedRow = AgendaTable.getSelectedRow();
         int selectedCol = AgendaTable.getSelectedColumn();
         String message = null;
+        Boolean isValid;
         
         // replace data in selected table cell if any changes are made
         try {
@@ -231,24 +235,36 @@ public class AgendaForm extends javax.swing.JPanel {
                     break;
             }
                     
-            agendaItem = JOptionPane.showInputDialog(null, message, agendaItem);
+            do {
+                isValid = false;
+                agendaItem = JOptionPane.showInputDialog(null, message, agendaItem);
 
-            switch (selectedCol) {
-                case 0:
-                    AgendaItem.AgendaCourse = agendaItem;
-                    break;
-                case 1:
-                    AgendaItem.AgendaType = agendaItem;
-                    break;
-                case 2:
-                    AgendaItem.AgendaDate = agendaItem;
-                    break;
-                case 3:
-                    AgendaItem.AgendaGrade = Integer.parseInt(agendaItem);
-                    break;
-                default:
-                    break;
-            }
+                switch (selectedCol) {
+                    case 0:
+                        AgendaItem.AgendaCourse = agendaItem;
+                        break;
+                    case 1:
+                        AgendaItem.AgendaType = agendaItem;
+                        break;
+                    case 2:
+                        AgendaItem.AgendaDate = agendaItem;
+                        break;
+                    case 3:
+                        // make sure a number was entered for grade
+                        try { 
+                            AgendaItem.AgendaGrade = Integer.parseInt(agendaItem);
+                            isValid = true;
+                        } catch(NumberFormatException e) { 
+                            JOptionPane.showMessageDialog(null, "Grade must be a number");
+                        } catch(NullPointerException e) {
+                            JOptionPane.showMessageDialog(null, "Grade must be a number");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                
+            } while (isValid == false);
             // display any updates to table
             table.setValueAt(agendaItem, selectedRow, selectedCol);
             myAgenda.AgendaUpdate(selectedRow, AgendaItem.AgendaCourse, AgendaItem.AgendaType, AgendaItem.AgendaDate, AgendaItem.AgendaGrade);
