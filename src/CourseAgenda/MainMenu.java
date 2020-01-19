@@ -176,7 +176,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void OverviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OverviewActionPerformed
         JDialog jd = new JDialog();
-        Overview overview = new Overview();
+        Overview overview = new Overview(Agenda);
         jd.setTitle("Overview");
         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         jd.add(overview);
