@@ -1,9 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * ICS4U Summative
+ * Course Planner
+ * Main Menu
  */
 package CourseAgenda;
+
+import java.awt.Dialog;
+import javax.swing.JDialog;
 
 /**
  *
@@ -29,13 +32,13 @@ public class MainMenu extends javax.swing.JFrame {
 
         jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Label = new javax.swing.JLabel();
+        Exit = new javax.swing.JButton();
+        Overview = new javax.swing.JButton();
+        Agenda = new javax.swing.JButton();
+        MenuTitle = new javax.swing.JLabel();
+        Grades = new javax.swing.JButton();
+        Settings = new javax.swing.JButton();
 
         jButton4.setBackground(new java.awt.Color(0, 102, 255));
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
@@ -50,49 +53,49 @@ public class MainMenu extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
-        jButton3.setBackground(new java.awt.Color(0, 102, 255));
-        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Exit");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Exit.setBackground(new java.awt.Color(0, 102, 255));
+        Exit.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        Exit.setForeground(new java.awt.Color(255, 255, 255));
+        Exit.setText("Exit");
+        Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                ExitActionPerformed(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(0, 102, 255));
-        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Overview");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        Overview.setBackground(new java.awt.Color(0, 102, 255));
+        Overview.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        Overview.setForeground(new java.awt.Color(255, 255, 255));
+        Overview.setText("Overview");
+        Overview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                OverviewActionPerformed(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(0, 102, 255));
-        jButton6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Agenda");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        Agenda.setBackground(new java.awt.Color(0, 102, 255));
+        Agenda.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        Agenda.setForeground(new java.awt.Color(255, 255, 255));
+        Agenda.setText("Agenda");
+        Agenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                AgendaActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Company Name");
+        MenuTitle.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        MenuTitle.setForeground(new java.awt.Color(255, 255, 255));
+        MenuTitle.setText("Company Name");
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Grades");
+        Grades.setBackground(new java.awt.Color(0, 102, 255));
+        Grades.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        Grades.setForeground(new java.awt.Color(255, 255, 255));
+        Grades.setText("Grades");
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 255));
-        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Settings");
+        Settings.setBackground(new java.awt.Color(0, 102, 255));
+        Settings.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        Settings.setForeground(new java.awt.Color(255, 255, 255));
+        Settings.setText("Settings");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,44 +105,44 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(155, 155, 155)
-                        .addComponent(jLabel3)
+                        .addComponent(MenuTitle)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton3)
+                        .addComponent(Exit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(Settings)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 66, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton5)
+                        .addComponent(Overview)
                         .addGap(42, 42, 42)
-                        .addComponent(jButton6)
+                        .addComponent(Agenda)
                         .addGap(41, 41, 41)
-                        .addComponent(jButton1)
+                        .addComponent(Grades)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Label, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addComponent(MenuTitle)
                 .addGap(26, 26, 26)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Label, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton1))
+                    .addComponent(Overview)
+                    .addComponent(Agenda)
+                    .addComponent(Grades))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
+                    .addComponent(Exit)
+                    .addComponent(Settings))
                 .addContainerGap())
         );
 
@@ -157,21 +160,35 @@ public class MainMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_ExitActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void OverviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OverviewActionPerformed
+        JDialog jd = new JDialog();
+        Overview overview = new Overview();
+        jd.setTitle("Overview");
+        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        jd.add(overview);
+        jd.pack();
+        jd.setLocationRelativeTo(null);
+        jd.setVisible(true);
+    }//GEN-LAST:event_OverviewActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void AgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgendaActionPerformed
+        JDialog jd = new JDialog();
+        AgendaForm agendaUI = new AgendaForm();
+        jd.setTitle("Agenda");
+        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        jd.add(agendaUI);
+        jd.pack();
+        jd.setLocationRelativeTo(null);
+        jd.setVisible(true);
+    }//GEN-LAST:event_AgendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,14 +226,14 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton Agenda;
+    private javax.swing.JButton Exit;
+    private javax.swing.JButton Grades;
+    private javax.swing.JLabel Label;
+    private javax.swing.JLabel MenuTitle;
+    private javax.swing.JButton Overview;
+    private javax.swing.JButton Settings;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

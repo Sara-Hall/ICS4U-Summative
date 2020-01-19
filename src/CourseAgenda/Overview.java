@@ -1,13 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * ICS4U Summative
+ * Course Planner
+ * Overview
  */
 package CourseAgenda;
 
 /**
  *
- * @author sara
+ * @author tuna
  */
 public class Overview extends javax.swing.JPanel {
 
