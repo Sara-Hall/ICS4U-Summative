@@ -17,9 +17,13 @@ public class AgendaForm extends javax.swing.JPanel {
     /**
      * Creates new form AgendaForm
      */
+    
+    private final Agenda myAgenda;
+    
     public AgendaForm(Agenda Agenda) {
         initComponents();
         myAgenda = Agenda;
+        DisplayAgenda();
     }
 
     /**
@@ -135,31 +139,45 @@ public class AgendaForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    // when import button is clicked
     private void ImportTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportTableActionPerformed
-        Agenda agenda = new Agenda();
-        agenda.AgendaImport();
+        // import and display table
+        myAgenda.AgendaImport();
+        DisplayAgenda();
     }//GEN-LAST:event_ImportTableActionPerformed
 
+    // when export button is clicked
     private void ExportTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportTableActionPerformed
-        Agenda agenda = new Agenda();
-        agenda.AgendaExport();
+        // export table
+        myAgenda.AgendaExport();
+        DisplayAgenda();
     }//GEN-LAST:event_ExportTableActionPerformed
 
+    // when add item button is clicked
     private void AddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddItemActionPerformed
+        // get user input
         String agendaCourse = JOptionPane.showInputDialog("Enter the course");
         String agendaType = JOptionPane.showInputDialog("Enter the type of assessment due");
         String agendaDate = JOptionPane.showInputDialog("Enter the due date");
-        String agendaGrade = JOptionPane.showInputDialog("Enter the grade if recieved");
-
-        myAgenda.AgendaAdd(agendaCourse, agendaType, agendaDate, agendaGrade);
+        String agendaGrade = JOptionPane.showInputDialog("Enter the grade if received");
+        
+        // make sure a number was entered for grade
+        try { 
+            Integer.parseInt(agendaGrade); 
+        } catch(NumberFormatException e) { 
+            JOptionPane.showMessageDialog(null, "Enter a number for grade");
+        } catch(NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Enter a number for grade");
+        }
+        
+        // show new row in table
+        myAgenda.AgendaAdd(agendaCourse, agendaType, agendaDate, Integer.parseInt(agendaGrade));
         
         DisplayAgenda();
         
-        //AgendaTable = agenda.AgendaAdd();
-       //(DefaultTableModel)AgendaTable.getModel() = agenda.AgendaAdd();
-        
     }//GEN-LAST:event_AddItemActionPerformed
 
+    // display updated table
     private void DisplayAgenda() {
         AgendaItem myAgendaItem;
         
@@ -179,6 +197,7 @@ public class AgendaForm extends javax.swing.JPanel {
         }
     }
     
+    // when update item button is clicked
     private void UpdateItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateItemActionPerformed
         
         DefaultTableModel table = (DefaultTableModel)AgendaTable.getModel();
@@ -192,7 +211,7 @@ public class AgendaForm extends javax.swing.JPanel {
             AgendaItem.AgendaCourse = table.getValueAt(selectedRow, 0).toString();
             AgendaItem.AgendaType = table.getValueAt(selectedRow, 1).toString();
             AgendaItem.AgendaDate = table.getValueAt(selectedRow, 2).toString();
-            AgendaItem.AgendaGrade = table.getValueAt(selectedRow, 3).toString();
+            AgendaItem.AgendaGrade = Integer.parseInt(table.getValueAt(selectedRow, 3).toString());
             
             String agendaItem = table.getValueAt(selectedRow, selectedCol).toString();
             switch (selectedCol) {
@@ -225,21 +244,24 @@ public class AgendaForm extends javax.swing.JPanel {
                     AgendaItem.AgendaDate = agendaItem;
                     break;
                 case 3:
-                    AgendaItem.AgendaGrade = agendaItem;
+                    AgendaItem.AgendaGrade = Integer.parseInt(agendaItem);
                     break;
                 default:
                     break;
             }
+            // display any updates to table
             table.setValueAt(agendaItem, selectedRow, selectedCol);
             myAgenda.AgendaUpdate(selectedRow, AgendaItem.AgendaCourse, AgendaItem.AgendaType, AgendaItem.AgendaDate, AgendaItem.AgendaGrade);
             DisplayAgenda();
 
+            // error if no cell is selected
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No cell selected");
         } 
         
     }//GEN-LAST:event_UpdateItemActionPerformed
 
+    // when delete item button is clicked
     private void DeleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteItemActionPerformed
         DefaultTableModel table = (DefaultTableModel) AgendaTable.getModel();
         
@@ -249,6 +271,8 @@ public class AgendaForm extends javax.swing.JPanel {
             table.removeRow(selectedRowIndex);
             myAgenda.AgendaDelete(selectedRowIndex);
             DisplayAgenda();
+           
+            // error if no row is selected
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No row selected");
         }
@@ -265,8 +289,4 @@ public class AgendaForm extends javax.swing.JPanel {
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JButton UpdateItem;
     // End of variables declaration//GEN-END:variables
-
-    private Agenda myAgenda;
-    
-    
 }

@@ -10,11 +10,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
 
@@ -30,6 +26,8 @@ public class Agenda {
         AgendaImport();
     }
 
+    // import agenda table data
+    // note: change file location for specific user
     public void AgendaImport() {
                 
         try {
@@ -54,6 +52,7 @@ public class Agenda {
         } 
     }
     
+    // export data from table to text file
     public void AgendaExport() {
         // create new text file if not already created
         // save contents of table to text file
@@ -85,6 +84,7 @@ public class Agenda {
         } 
     }
     
+    // for adding new agenda items
     public void AgendaAdd(String AgendaCourse, String AgendaType, String AgendaDate, int AgendaGrade) {
         AgendaItem AgendaItem = new AgendaItem();
         AgendaItem.AgendaCourse = AgendaCourse;
@@ -95,15 +95,20 @@ public class Agenda {
         AgendaItems.add(AgendaItem);
     }
     
+    // get the number of rows
     public int AgendaItems() {
         return AgendaItems.size();
     }
     
     public AgendaItem AgendaGet(int itemNumber) {
-    // needs to be bulletproofed
+        // make sure item number is an integer
+        if (itemNumber != (int)itemNumber) {
+            JOptionPane.showMessageDialog(null, "Not an integer");
+        }
         return AgendaItems.get(itemNumber);
     }
     
+    // for updating the table
     public void AgendaUpdate(int itemNumber, String AgendaCourse, String AgendaType, String AgendaDate, int AgendaGrade) {
         AgendaItem AgendaItem = new AgendaItem();
         AgendaItem.AgendaCourse = AgendaCourse;
@@ -115,10 +120,9 @@ public class Agenda {
         
     }
 
+    // for deleting a row
     public void AgendaDelete(int itemNumber) {
-        
         AgendaItems.remove(itemNumber);
-        
     }
     
 }

@@ -14,8 +14,11 @@ public class Overview extends javax.swing.JPanel {
     /**
      * Creates new form Overview
      */
-    public Overview() {
+    Agenda myAgenda;
+    
+    public Overview(Agenda Agenda) {
         initComponents();
+        myAgenda = Agenda;
     }
 
     /**
