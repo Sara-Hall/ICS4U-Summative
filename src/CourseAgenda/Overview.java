@@ -1,11 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * ICS4U Summative
+ * Course Planner
+ * Agenda
  */
 package CourseAgenda;
 
-import CourseAgenda.Course;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author S347391269
+ * @author Tuna
  */
 public class Overview extends javax.swing.JFrame {
     
@@ -28,6 +27,9 @@ public class Overview extends javax.swing.JFrame {
         writeRows();
         displayOverallAverage();
         displayNumberOfItems();
+        System.out.println("-----------------------");
+        ArrayList<String> fileInLines = Course.readFile();
+        System.out.println(fileInLines);
     }
 
     /**
@@ -139,7 +141,6 @@ public class Overview extends javax.swing.JFrame {
         ArrayList<String> courseList = Course.getCourseList();
         for(String newCourseName: courseList){
             Course courseName = new Course(newCourseName);
-            
             // put data into new table row
             Object overviewItem[] = new Object[2];
             overviewItem[0] = newCourseName;
