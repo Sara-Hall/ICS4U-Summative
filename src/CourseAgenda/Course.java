@@ -57,6 +57,8 @@ public class Course {
                     }
             }catch (ArrayIndexOutOfBoundsException a){
                 System.out.println("No Grades Entered!");
+            }catch (NumberFormatException n){
+                System.out.println("TEST");
             }
         }
         
