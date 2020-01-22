@@ -47,6 +47,7 @@ public class AgendaForm extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 153, 255));
 
         AgendaTitle.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        AgendaTitle.setForeground(new java.awt.Color(255, 255, 255));
         AgendaTitle.setText("Agenda");
 
         AgendaTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -101,9 +102,6 @@ public class AgendaForm extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(AgendaTitle))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56)
@@ -112,17 +110,18 @@ public class AgendaForm extends javax.swing.JPanel {
                             .addComponent(ExportTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(AddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(UpdateItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(DeleteItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(DeleteItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(AgendaTitle)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(AgendaTitle)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addGap(88, 88, 88)
                         .addComponent(ImportTable)
                         .addGap(18, 18, 18)
                         .addComponent(ExportTable)
@@ -133,6 +132,8 @@ public class AgendaForm extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(DeleteItem))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(AgendaTitle)
                         .addGap(18, 18, 18)
                         .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(48, Short.MAX_VALUE))
