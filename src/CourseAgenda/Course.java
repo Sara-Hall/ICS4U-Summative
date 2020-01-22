@@ -26,8 +26,12 @@ public class Course {
         course = couseName;
     }
     
+    // Gets a list of courses from the output file 
     public static ArrayList<String> getCourseList(){
+        // Reads each line on the file and returns an arraylist
         fileLines = readFile();
+        
+        //Go through the file and add any new couse to the list
         for(String data:fileLines){
             String[] values = data.split(",");
             if(!courseNames.contains(values[0])){
@@ -38,8 +42,12 @@ public class Course {
         return courseNames;
     }
     
+    // Returns the average of the couse
     public double getAverage(){
+        // Reads each line on the file and returns an arraylist
         fileLines = readFile();
+        
+        //Go through the file and add all grades of a couse to the list
         for(String data:fileLines){
             String[] values = data.split(",");
             try{
@@ -51,23 +59,26 @@ public class Course {
                 System.out.println("No Grades Entered!");
             }
         }
-        System.out.println(grades);
+        
+        // Calculates the average using the list of grades
         int sum = 0;
         for(int temp : grades) {
             sum += temp;
         }
         average = (double)sum/(double)grades.size();
-        System.out.println(average);
         return average;
         
     }
     
+    // Reads the file and returns an array list of lines
     public static ArrayList<String> readFile(){
         fileLines.clear();
         try {
+            // Reads a new line from the file
             File myObj = new File("Agenda.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
+                // Adds the new line to the list
                 String data = myReader.nextLine();
                 fileLines.add(data);
             }

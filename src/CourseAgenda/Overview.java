@@ -5,10 +5,7 @@
  */
 package CourseAgenda;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Overview extends javax.swing.JFrame {
     
+    // List of course averages
     ArrayList<Double> averageList = new ArrayList<>();
 
     /**
@@ -27,8 +25,6 @@ public class Overview extends javax.swing.JFrame {
         writeRows();
         displayOverallAverage();
         displayNumberOfItems();
-        System.out.println("-----------------------");
-        System.out.println(Course.fileLines.size());
     }
 
     /**
@@ -135,16 +131,23 @@ public class Overview extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    // Create a new row on the table with as new course and its average
     private void writeRows() {
+        // Changes background to blue
         getContentPane().setBackground(new java.awt.Color(0,153,255));
         ArrayList<String> courseList = Course.getCourseList();
+       
+        // Go through each course
         for(String newCourseName: courseList){
             Course courseName = new Course(newCourseName);
-            // put data into new table row
+            
+            // Put course name and average to the table
             Object overviewItem[] = new Object[2];
             overviewItem[0] = newCourseName;
             String average = String.format("%.2f", courseName.getAverage());
+            
+            //Replaces the NaN with No Grade Available for client 
             if(average.equals("NaN")){
                 average = "No Grade Available !";
             } else {
@@ -156,15 +159,19 @@ public class Overview extends javax.swing.JFrame {
         }
     }
     
+    // Displays the overall average on the overview page
     private void displayOverallAverage(){
         double sum = 0;
         for (double temp : averageList) {
             sum += temp;
 	}
         double overallAverage = sum/averageList.size();
+        
+        //Round the average and display it on the screen
         overallAverageLabel.setText(String.format("%.2f", overallAverage));
     }
     
+    //Displays the number of ungraded items on the agenda
     private void displayNumberOfItems(){
         int numberOfItem = 0;
         for(String data:Course.fileLines){
@@ -175,6 +182,7 @@ public class Overview extends javax.swing.JFrame {
                 numberOfItem +=1;
             }  
         }  
+        // Sets the label to display number of ungraded items
         numberOfItemLabel.setText("You have " + Integer.toString(numberOfItem) + " ungraded items on you list.");
     }
     
