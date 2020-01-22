@@ -27,20 +27,22 @@ public class Agenda {
     }
 
     // import agenda table data
-    // note: change file location for specific user
     public void AgendaImport() {
                 
         try {
             
             String fileLocation = "Agenda.txt";
             File file = new File(fileLocation);
+            // check is file exists
             if (!file.exists()) {
                 return;
             }
             BufferedReader br = new BufferedReader(new FileReader(file));
             Object[] agendaLines = br.lines().toArray();
+            // clear table before importing
             AgendaItems.clear();
             
+            // import table
             for(int i = 0; i < agendaLines.length; i++) {
                 String agendaLine = agendaLines[i].toString().trim();
                 String[] agendaItem = agendaLine.split(",");
@@ -48,14 +50,13 @@ public class Agenda {
             }
             br.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "C:\\Users\\sara\\OneDrive\\Documents\\Agenda.txt does not exist.");
+            JOptionPane.showMessageDialog(null, "File does not exist.");
         } 
     }
     
     // export data from table to text file
     public void AgendaExport() {
         // create new text file if not already created
-        // save contents of table to text file
         AgendaItem AgendaItem;
         try {
             File file = new File("Agenda.txt");
@@ -66,6 +67,7 @@ public class Agenda {
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
             
+            // save contents of table to text file
             for (int i = 0; i < AgendaItems.size(); i++) {
                 AgendaItem = AgendaItems.get(i);
                 
@@ -80,11 +82,11 @@ public class Agenda {
             fw.close();
             JOptionPane.showMessageDialog(null, "Data has been saved");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "C:\\Users\\sara\\OneDrive\\Documents\\Agenda.txt could not be created.");
+            JOptionPane.showMessageDialog(null, "File could not be created.");
         } 
     }
     
-    // for adding new agenda items
+    // adding new agenda items
     public void AgendaAdd(String AgendaCourse, String AgendaType, String AgendaDate, int AgendaGrade) {
         AgendaItem AgendaItem = new AgendaItem();
         AgendaItem.AgendaCourse = AgendaCourse;
@@ -108,7 +110,7 @@ public class Agenda {
         return AgendaItems.get(itemNumber);
     }
     
-    // for updating the table
+    // updating the table
     public void AgendaUpdate(int itemNumber, String AgendaCourse, String AgendaType, String AgendaDate, int AgendaGrade) {
         AgendaItem AgendaItem = new AgendaItem();
         AgendaItem.AgendaCourse = AgendaCourse;
@@ -120,7 +122,7 @@ public class Agenda {
         
     }
 
-    // for deleting a row
+    // deleting a row
     public void AgendaDelete(int itemNumber) {
         AgendaItems.remove(itemNumber);
     }

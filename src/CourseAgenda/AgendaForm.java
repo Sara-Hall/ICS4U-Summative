@@ -209,7 +209,7 @@ public class AgendaForm extends javax.swing.JPanel {
         String message = null;
         Boolean isValid;
         
-        // replace data in selected table cell if any changes are made
+        // allows user to make changes to a specific table cell
         try {
             AgendaItem AgendaItem = new AgendaItem();
             AgendaItem.AgendaCourse = table.getValueAt(selectedRow, 0).toString();
@@ -242,12 +242,15 @@ public class AgendaForm extends javax.swing.JPanel {
                 switch (selectedCol) {
                     case 0:
                         AgendaItem.AgendaCourse = agendaItem;
+                        isValid = true;
                         break;
                     case 1:
                         AgendaItem.AgendaType = agendaItem;
+                        isValid = true;
                         break;
                     case 2:
                         AgendaItem.AgendaDate = agendaItem;
+                        isValid = true;
                         break;
                     case 3:
                         // make sure a number was entered for grade
