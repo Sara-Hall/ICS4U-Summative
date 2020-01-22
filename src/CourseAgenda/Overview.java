@@ -48,7 +48,8 @@ public class Overview extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 153, 255));
         setForeground(java.awt.Color.black);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Overview");
 
         overviewTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -76,10 +77,16 @@ public class Overview extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(overviewTable);
 
-        jLabel2.setText("OverAll Average :");
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Overall Average :");
 
+        overallAverageLabel.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        overallAverageLabel.setForeground(new java.awt.Color(255, 255, 255));
         overallAverageLabel.setText("jLabel3");
 
+        numberOfItemLabel.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        numberOfItemLabel.setForeground(new java.awt.Color(255, 255, 255));
         numberOfItemLabel.setText("You have ? ungraded item on your agenda.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,7 +132,7 @@ public class Overview extends javax.swing.JFrame {
                     .addComponent(overallAverageLabel))
                 .addGap(18, 18, 18)
                 .addComponent(numberOfItemLabel)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
