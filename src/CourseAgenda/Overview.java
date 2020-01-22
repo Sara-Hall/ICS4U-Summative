@@ -28,8 +28,7 @@ public class Overview extends javax.swing.JFrame {
         displayOverallAverage();
         displayNumberOfItems();
         System.out.println("-----------------------");
-        ArrayList<String> fileInLines = Course.readFile();
-        System.out.println(fileInLines);
+        System.out.println(Course.fileLines.size());
     }
 
     /**
@@ -134,6 +133,7 @@ public class Overview extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void writeRows() {
@@ -167,22 +167,14 @@ public class Overview extends javax.swing.JFrame {
     
     private void displayNumberOfItems(){
         int numberOfItem = 0;
-        try {
-            File myObj = new File("Agenda.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                String[] values = data.split(",");
-                try{
-                    System.out.println(values[3]);
-                }catch (ArrayIndexOutOfBoundsException a){
-                    numberOfItem +=1;
-                }
-            }
-            myReader.close();
-            } catch (FileNotFoundException f) {
-            System.out.println("Input file does not exist!");
-        }
+        for(String data:Course.fileLines){
+            String[] values = data.split(",");
+            try{
+                System.out.println(values[3]);
+            }catch (ArrayIndexOutOfBoundsException a){
+                numberOfItem +=1;
+            }  
+        }  
         numberOfItemLabel.setText("You have " + Integer.toString(numberOfItem) + " ungraded items on you list.");
     }
     

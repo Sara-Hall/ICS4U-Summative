@@ -63,6 +63,7 @@ public class Course {
     }
     
     public static ArrayList<String> readFile(){
+        fileLines.clear();
         try {
             File myObj = new File("Agenda.txt");
             Scanner myReader = new Scanner(myObj);
